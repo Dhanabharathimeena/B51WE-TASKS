@@ -1,0 +1,48 @@
+Difference between HTTP1.1 vs HTTP2
+
+HTTP:
+
+   * HTTP stands for hypertext transfer protocol. It is used in client-server communication. 
+By using HTTP user sends the request to the server & the server sends the response to the user. 
+There are several stages of development of HTTP such as HTTP/1.0, HTTP/1.1 and the latest
+HTTP/2.0.
+
+HTTP 1.1:
+
+   * It's an upgraded version of basic version HTTP 1.0 which made things faster by allowing 
+the computer to reuse the information it recieved from the server. 
+   * For better understanding, let’s assume the situation when you make a request to the server for 
+the example.html page and server responds to you as a resource example.html page. before sending the 
+request and the response, there is a TCP connection established between client and server. 
+   * Again you make a request to the server for image img.jpg and the server gives a response as an image 
+img.jpg. the connection was not lost here after the first request because we add a keep-alive header 
+which is the part of the request so there is an open connection between the server & client. There is a 
+persistent connection which means several requests and responses are merged in a single connection.
+   * HTTP 1.1 transfer all the requests and responses in the plain text message form. The head of 
+line blocking in which TCP connection is blocks all other requests until the every responses is not 
+received. All the information related to the header file is repeated in every request. This was seen 
+as a major drawback of this version.
+
+HTTP 2.0:
+
+   * The drawbacks in the previous version leads to the creation of HTTP 2.0, where the computer
+can send and recieve more information at the same time.
+   * HTTP 2.0 was developed over the SPDY protocol. It works on the binary framing layer instead of 
+textual that converts all the messages in binary format. It works on fully multiplexed, that is one TCP 
+connection is used for multiple requests. HTTP 2.0 uses HPACK which is used to split data from header. 
+   * It compresses the header. The server sends all the other files like CSS & JS without the request 
+of the client using the PUSH frame.
+
+The major differences of HTTP 1.0 and HTTP 2.0 is:
+
+-------------------------------------------------------------------------------------------------------
+               HTTP 1.1                            |                  HTTP 2.0
+-------------------------------------------------------------------------------------------------------
+   * It works on the textual format                |   * It works on the binary protocol
+   * There is head of line blocking that blocks    |   * It allows multiplexing so one TCP connection 
+   all the requests behind it until it doesn’t     |   is required for multiple requests 
+   get its all resources                           |
+   * It uses requests resource Inlining for use    |   * It uses PUSH frame by server that collects 
+   getting multiple pages                          |   all multiple pages
+   * It compresses data by itself                  |   *It uses HPACK for data compression
+-------------------------------------------------------------------------------------------------------

@@ -1,0 +1,123 @@
+objects and its internal representation in Javascript:
+
+Objects:
+
+  * Objects, in JavaScript, is it’s most important data-type and forms the building blocks 
+for modern JavaScript. These objects are quite different from JavaScript’s primitive data-types
+such as Number, String, Boolean, null, undefined and symbol.
+  * Objects are more complex and each object may contain any combination of these primitive 
+data-types as well as reference data-types.
+  * Objects in JavaScript may be defined as an unordered collection of related data, of 
+primitive or reference types, in the form of “key: value” pairs. These keys can be variables 
+or functions and are called properties and methods (updateAddress, updateNam, etc.,), 
+respectively, in the context of an object.
+  * Objects are always represented by "{}" i.e, flower brackets and separated by a comma ",". 
+For example:
+          const person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 50,
+            eyeColor: "blue"
+          };
+
+Properties:
+
+  * A property of an object can be explained as a variable that is attached to the object. 
+The properties of an object define the characteristics of the object. We access the properties 
+of an object with a simple dot-notation: objectName.propertyName
+  * Property name is case sensitive. We can define a property by assigning it a value. 
+For example, let’s create an object named myCar and give it properties named make, model, and year 
+as follows:
+          var myCar = new Object();
+          myCar.make = 'Ford';
+          myCar.model = 'Mustang';
+          myCar.year = 1969;
+  * Unassigned properties of an object are undefined (and not null) like:
+          myCar.color; // undefined
+  * Properties of JavaScript objects can also be accessed or set using a bracket notation.
+  * Objects are sometimes called associative arrays, since each property is associated with a string 
+value. For example, we can access the properties of the myCar object as follows:
+          myCar['make'] = 'Ford';
+  * An object property name can be any valid JavaScript string, or anything that can be converted 
+to a string, including the empty string.
+  * Any property name that is not a valid JavaScript identifier such as a property name that has a 
+space or a hyphen, or that starts with a number can only be accessed using the square bracket notation. 
+This notation is also very useful when property names are to be dynamically determined. Some examples 
+are as follows:
+          var myObj = new Object(),
+              str = 'myString',
+              rand = Math.random(),
+              obj = new Object();
+          myObj.type              = 'Dot syntax';
+          myObj['date created']   = 'String with space';
+          myObj[str]              = 'String value';
+          myObj[rand]             = 'Random Number';
+          myObj[obj]              = 'Object';
+          myObj['']               = 'Even an empty string';
+          console.log(myObj);
+  * The properties can also be accessed by using a string value that is stored in a variable.
+          var propertyName = 'make';
+          myCar[propertyName] = 'Ford';
+  * Bracket notation can be used with for...in to iterate over all the enumerable properties of an 
+object. For example:
+          function showProps(obj, objName) {
+            var result = ``;
+            for (var i in obj) {
+              // obj.hasOwnProperty() is used to filter out properties from the object's prototype chain
+              if (obj.hasOwnProperty(i)) {
+              result += `${objName}.${i} = ${obj[i]}\n`;
+              }
+            }
+            return result;
+          }  
+So, the function call showProps(myCar, "myCar") would return the following:
+          myCar.make = Ford
+          myCar.model = Mustang
+          myCar.year = 1969
+
+Creating Objects In JavaScript:
+
+Object with Object Literal:
+    Objects can be created by defining the property and values inside curly braces as shown below:
+          let bike = {name: 'SuperSport', maker:'Ducati', engine:'937cc'};
+
+Object with Constructor:
+    Constructor function allows to create multiple objects of same flavor as shown below:
+          function Vehicle(name, maker) {
+            this.name = name;
+            this.maker = maker;
+          }
+          let car1 = new Vehicle(’Fiesta’, 'Ford’);
+          let car2 = new Vehicle(’Santa Fe’, 'Hyundai’)
+          console.log(car1.name);    //Output: Fiesta
+          console.log(car2.name);    //Output: Santa Fe  
+
+Using the JavaScript Keyword new:
+          var person = new Object();
+          person.firstName = “John”;
+          person.lastName = “Doe”;
+          person.age = 50;
+          person.eyeColor = “blue”;
+
+Using the Object.create method:
+    Objects can also be created using the Object.create() method. This method can be very useful, 
+because it allows us to choose the prototype object for the object we want to create, without having 
+to define a constructor function. For example:
+          // Animal properties and method encapsulation
+          var Animal = {
+            type: 'Invertebrates', // Default value of properties
+            displayType: function() {  // Method which will display type of Animal
+              console.log(this.type);
+            }
+          };
+          // Create new animal type called animal1 
+          var animal1 = Object.create(Animal);
+          animal1.displayType(); // Output:Invertebrates
+          // Create new animal type called Fishes
+          var fish = Object.create(Animal);
+          fish.type = 'Fishes';
+          fish.displayType(); 
+          // Output:Fishes  
+  
+  
+          
